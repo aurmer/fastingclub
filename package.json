@@ -1,0 +1,23 @@
+{
+  "name": "fastingclub",
+  "version": "1.0.0",
+  "description": "a community support app for people who have fasting goals",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aurmer/fastingclub.git"
+  },
+  "author": "Aubrey Snider",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aurmer/fastingclub/issues"
+  },
+  "homepage": "https://github.com/aurmer/fastingclub#readme"
+}
