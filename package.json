@@ -4,11 +4,16 @@
   "description": "a community support app for people who have fasting goals",
   "main": "app.js",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "4.17.1",
+    "knex": "0.19.5",
+    "pg": "7.12.1",
+    "sqlite3": "4.1.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "standard": "14.3.1"
+  },
   "scripts": {
-    "test": "test.js"
+    "test": "npx standard && node test.js"
   },
   "repository": {
     "type": "git",
