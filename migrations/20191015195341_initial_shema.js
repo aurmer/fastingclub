@@ -1,9 +1,24 @@
 
 exports.up = function(knex) {
 
-  CREATE TABLE "users"
+  return knex.raw(
+    
+    `CREATE TABLE "zipcodes"
+    (
+     "number"        integer NOT NULL,
+     "deg_latitude"  real NOT NULL,
+     "deg_longitude" real NOT NULL
+  
+    );
+
+    CREATE UNIQUE INDEX "PK_zipcode" ON "zipcodes"
   (
-   "id"    serial NOT NULL,
+   "number"
+  );
+    
+    CREATE TABLE "users"
+  (
+    "id"    serial NOT NULL,
    "fname" text NOT NULL,
    "lname" text NOT NULL,
    "email" text NOT NULL
@@ -36,19 +51,6 @@ exports.up = function(knex) {
    "zipcode"
   );
 
-  CREATE TABLE "zipcodes"
-  (
-   "number"        integer NOT NULL,
-   "deg_latitude"  real NOT NULL,
-   "deg_longitude" real NOT NULL
-
-  );
-
-  CREATE UNIQUE INDEX "PK_zipcode" ON "zipcodes"
-  (
-   "number"
-  );
-
   CREATE TABLE "users_fastEvents_join"
   (
    "id_user"      serial NOT NULL,
@@ -67,12 +69,12 @@ exports.up = function(knex) {
   CREATE INDEX "fkIdx_173" ON "users_fastEvents_join"
   (
    "id_fastEvent"
-  );
+  );`)
 };
 
 exports.down = function(knex) {
-  DROP TABLE "users_fastEvents_join";
+  return knex.raw(`DROP TABLE "users_fastEvents_join";
   DROP TABLE "users";
   DROP TABLE "fastEvents";
-  DROP TABLE "zipcodes";
+  DROP TABLE "zipcodes";`)
 };
