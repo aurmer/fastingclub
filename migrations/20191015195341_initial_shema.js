@@ -1,28 +1,25 @@
 
-exports.up = function(knex) {
-
+exports.up = function (knex) {
   return knex.raw(
-    
+
     `CREATE TABLE "zipcodes"
     (
      "number"        integer NOT NULL,
      "deg_latitude"  real NOT NULL,
      "deg_longitude" real NOT NULL
-  
     );
 
     CREATE UNIQUE INDEX "PK_zipcode" ON "zipcodes"
   (
    "number"
   );
-    
+
     CREATE TABLE "users"
   (
     "id"    serial NOT NULL,
    "fname" text NOT NULL,
    "lname" text NOT NULL,
    "email" text NOT NULL
-
   );
 
   CREATE UNIQUE INDEX "PK_users" ON "users"
@@ -70,11 +67,11 @@ exports.up = function(knex) {
   (
    "id_fastEvent"
   );`)
-};
+}
 
-exports.down = function(knex) {
+exports.down = function (knex) {
   return knex.raw(`DROP TABLE "users_fastEvents_join";
   DROP TABLE "users";
   DROP TABLE "fastEvents";
   DROP TABLE "zipcodes";`)
-};
+}
