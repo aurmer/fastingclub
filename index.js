@@ -2,13 +2,19 @@ const express = require('express')
 const app = express()
 const PORT = 3002
 
-// var knex = require('knex')({
-//   client: 'sqlite3',
-//   connection: {
-//     filename: './dev.sqlite'
-//   }
-// })
+const environment = process.env.NODE_ENV || 'development'
+const configuration = require('./knexfile.js')[environment]
+const database = require('knex')(configuration)
 
-app.get('/', (req, res) => res.send('Welcome to Fasting Club! We will be with you shortly.'))
+app.get('/', function (req, res) {
+  database.raw(
+    `INSERT INTO zipcodes (number, deg_latitude, deg_longitude)
+    VALUES ('77063', '75', '75');`
+  ).catch(function (error) {
+    console.log(error)
+  })
+
+  res.send('Welcome to Fasting Club! We will be with you shortly.')
+})
 
 app.listen(PORT, () => console.log(`Example app listening on port ${PORT}!`))
